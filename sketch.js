@@ -78,6 +78,9 @@ function mouseDragged(event) {
 function setup() {
   pixelDensity(1); // account for high-density displays
   let canvas = createCanvas(707, 707, WEBGL); // 3D mode to allow shaders, also 707^2 is about 500,000 pixels
+  canvas.position(0, 10, "relative");
+  canvas.style("border-style", "solid");
+  canvas.style("border-color", "gray");
   background(0); // initialize
   halfWidth = width * .5;
   halfHeight = height * .5;
