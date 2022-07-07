@@ -1,3 +1,5 @@
+/// <reference path="../../TSDef/p5/global.d.ts" />
+
 // parameters to be controlled
 const controls = {
   iterations: 1,
@@ -25,9 +27,9 @@ let panY = 0;
 
 
 function preload() {
-  theShader = loadShader("shader.vert", "shader.frag"); // conway shader
-  trailsShader = loadShader("shader.vert", "trails.frag");
-  noiseShader = loadShader("shader.vert", "noise.frag"); // white -> noise
+  theShader = loadShader("vert.glsl", "frag.glsl"); // conway shader
+  trailsShader = loadShader("vert.glsl", "trails_frag.glsl");
+  noiseShader = loadShader("vert.glsl", "noise_frag.glsl"); // white -> noise
 }
 
 
@@ -96,7 +98,7 @@ function setup() {
   controlsContainer.style("left", "10px"); // left or right
   controlsContainer.style("width", "275px");
   // create a pane as a child of the previously created div
-  const pane = new Tweakpane.Pane({container: document.querySelector("#controlsContainer"), title: "controls", expanded: true});
+  const pane = new Tweakpane.Pane({container: document.getElementById("controlsContainer"), title: "controls", expanded: true});
   pane.registerPlugin(TweakpaneEssentialsPlugin); // add plugin for fpsgraph
   pane.addSeparator();
   const pauseBtn = pane.addButton({title: "pause"}); // create pause button
