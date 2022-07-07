@@ -41,6 +41,14 @@ document.oncontextmenu = function() {
     return false;
 }
 
+function windowResized() {
+  resizeCanvas(floor(windowHeight * .8 * .5) * 2, floor(windowHeight * .8 * .5) * 2);
+  graphics1.resizeCanvas(width, height);
+  graphics2.resizeCanvas(width, height);
+  halfWidth = width * .5;
+  halfHeight = height * .5;
+}
+
 // this function kind of got away from me, but it works. the whole zoomcheck thing is messy but whatever.
 function zoomControl(event) {
   let zoomCheck = zoom;
@@ -77,7 +85,7 @@ function mouseDragged(event) {
 
 function setup() {
   pixelDensity(1); // account for high-density displays
-  let canvas = createCanvas(707, 707, WEBGL); // 3D mode to allow shaders, also 707^2 is about 500,000 pixels
+  let canvas = createCanvas(floor(windowHeight * .8 * .5) * 2, floor(windowHeight * .8 * .5) * 2, WEBGL); // 3D mode to allow shaders, also 707^2 is about 500,000 pixels
   canvas.position(0, 10, "relative");
   canvas.style("border-style", "solid");
   canvas.style("border-color", "gray");
@@ -98,7 +106,7 @@ function setup() {
   controlsContainer.id("controlsContainer");
   controlsContainer.style("position", "fixed"); // always visible, even when scrolling
   controlsContainer.style("top", "10px");
-  controlsContainer.style("left", "10px"); // left or right
+  controlsContainer.style("right", "10px"); // left or right
   controlsContainer.style("width", "275px");
   // create a pane as a child of the previously created div
   const pane = new Tweakpane.Pane({container: document.getElementById("controlsContainer"), title: "controls", expanded: true});
