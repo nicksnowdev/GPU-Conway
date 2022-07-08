@@ -1,4 +1,4 @@
-/// <reference path="../../TSDef/p5/global.d.ts" />
+/// <reference path="C:/Users/nicsn/projects/resources/p5_definitions/global.d.ts" />
 
 // parameters to be controlled
 const controls = {
