@@ -152,6 +152,21 @@ function setup() {
   pane.addSeparator();
   const stats = pane.addFolder({title: "stats", expanded: false});
   fpsGraph = stats.addBlade({view: "fpsgraph", label: "fps"});
+
+  // fill canvas at start
+  graphics1.loadPixels();
+  for(let y = 0; y < height; y++) {
+    for(let x = 0; x < width; x++) {
+      index = (x + y * width) * 4;
+      val = random(1).toFixed(0) * 255;
+      graphics1.pixels[index + 0] = val;
+      graphics1.pixels[index + 1] = controls.trails ? 0 : val;
+      graphics1.pixels[index + 2] = controls.trails ? 0 : val;
+    }
+  }
+  graphics1.updatePixels();
+  pauseBtn.title = "pause";
+  paused = false;
 }
 
 function draw() {
