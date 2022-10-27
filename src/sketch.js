@@ -9,6 +9,8 @@ const controls = {
 let paused = false;
 let fpsGraph;
 
+let canvas;
+let mousedOver = false;
 let graphics1; // stage 1
 let graphics2; // stage 2
 let theShader;
@@ -81,11 +83,21 @@ function mouseDragged(event) {
 }
 
 
+// this is called by the mouseOver event listener on canvas
+function enablePaint() {
+  mousedOver = true;
+}
+// this is called by the mouseOut event listener on canvas
+function disablePaint() {
+  mousedOver = false;
+}
 
 
 function setup() {
   pixelDensity(1); // account for high-density displays
-  let canvas = createCanvas(floor(windowHeight * .8 * .5) * 2, floor(windowHeight * .8 * .5) * 2, WEBGL); // 3D mode to allow shaders, also 707^2 is about 500,000 pixels
+  canvas = createCanvas(floor(windowHeight * .8 * .5) * 2, floor(windowHeight * .8 * .5) * 2, WEBGL); // 3D mode to allow shaders, also 707^2 is about 500,000 pixels
+  canvas.mouseOver(enablePaint);
+  canvas.mouseOut(disablePaint);
   canvas.position(0, 10, "relative");
   canvas.style("border-style", "solid");
   canvas.style("border-color", "gray");
@@ -202,7 +214,7 @@ function draw() {
       let paintX = (mouseX - halfWidth) / zoom + halfWidth - panX; // the half vars cancel out at zoom = 1
       let paintY = (mouseY - halfHeight) / zoom + halfHeight - panY;
       let breaker = 0;
-      if(!breaker && mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+      if(!breaker && mousedOver) {
         breaker = 1; // prevent running this section 100 times a frame
         // paint the lines
         let painted = 0;
