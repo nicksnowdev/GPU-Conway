@@ -1,3 +1,5 @@
-Conway's Game of Life computed on the GPU with a fragment shader. This is my first p5 project, and I wanted to see how it handles shaders and graphics buffers. Not bad!
+Conway's Game of Life computed on the GPU with a fragment shader. This is my first p5 project, and I wanted to see how it handles shaders and graphics buffers.
+
+Every time a pixel is activated, it permanently adds a small amount to it's blue and green channels, resulting in an interesting nebula-like effect.
 
 Paint with left mouse button, erase with right mouse button.
